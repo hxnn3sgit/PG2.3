@@ -1,0 +1,43 @@
+#include "dyn_arr.h"
+#include <iostream>
+
+
+using std::endl, std::cout, std::cerr;
+
+dynamic_array::dynamic_array() : size(10), ptr(new int[size]) {
+	 //Default-Value for size of array = 10
+	for (int i = 0; i < size; ++i)
+		ptr[i] = 0;
+}
+
+dynamic_array::dynamic_array(int to_alloc) : size(to_alloc), ptr(new int[to_alloc]) {
+	for (int i = 0; i < size; ++i)
+		ptr[i] = 0;
+}
+
+dynamic_array::~dynamic_array() {
+	cout << __PRETTY_FUNCTION__ << endl;
+	delete [] ptr;
+}
+
+void dynamic_array::print_array() {
+	std::cout << "array-size: " << this->size << std::endl;
+
+	for (int i = 0; i < this->size; ++i)
+		cout << this->ptr[i] << endl;
+}
+
+int& dynamic_array::at(int i) {
+	return ptr[i];
+}
+
+void dynamic_array::push(int x) {
+	int size_of_arr = sizeof(sizeof(ptr) / sizeof(ptr[0]));
+
+	if(size_of_arr <= this->size) {
+		for (unsigned int i = 0; i < this->size; ++i) {
+			if (this->ptr[i] == 0)
+				this->ptr[i] = x;
+		}	
+	}
+}

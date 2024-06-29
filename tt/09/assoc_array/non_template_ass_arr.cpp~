@@ -1,0 +1,40 @@
+#include <iostream>
+#include <string>
+#include <cstring>
+
+using std::cout, std::endl, std::string, std::ostream;
+
+/*struct my_pair{
+	int matr_nr;
+	string key;
+	my_pair(int matr_nr, string key) : matr_nr(matr_nr), key(key) {}
+	my_pair(int 	
+};*/
+
+class associative_array {
+private:
+	std::pair<int, string> *data;	
+	unsigned int size;
+public:
+	associative_array() : data(nullptr), size(0) {}
+	associative_array(int size) : data(new std::pair<int, string>[size]), size(size) {} 
+	//associative_array() noch anderer konstruktor???
+	~associative_array();
+   	void push(int value, const string &key);
+	int operator[](const string &my_str);
+	friend ostream& operator<<(ostream &out, const associative_array &other);   
+};
+
+/*void associative_array::push(int value, const string &key) {
+	int *new_data = new int[size+1];
+
+	for (
+}*/
+
+
+int main() {
+
+
+
+	return 0;
+}

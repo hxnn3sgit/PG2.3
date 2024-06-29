@@ -1,0 +1,28 @@
+Aufruf: seq [OPTION]... LETZTER
+ oder:  seq [OPTION]... ERSTER LETZTER
+ oder:  seq [OPTION]... ERSTER PLUS LETZTER
+Die Zahlen von ERSTER bis LETZTER ausgeben, in Schritten von PLUS.
+
+Erforderliche Argumente für lange Optionen sind auch für kurze erforderlich.
+  -f, --format=FORMAT      Fließkomma‐FORMAT im Stil von printf benutzen
+  -s, --separator=ZKETTE   ZKETTE benutzen, um Zahlen zu trennen (Vorgabe: \n)
+  -w, --equal-width        gleiche Breite durch führende Nullen herstellen
+      --help        diese Hilfe anzeigen und beenden
+      --version     Versionsinformation anzeigen und beenden
+
+Wenn ERSTER oder PLUS weggelassen werden, wird 1 angenommen. Ein weggelassenes
+PLUS wird also als 1 interpretiert, selbst wenn LETZTER kleiner als ERSTER ist.
+ERSTER, PLUS und LETZTER werden als Fließkommazahlen interpretiert.
+PLUS ist normalerweise positiv, wenn ERSTER kleiner als LETZTER ist, und
+PLUS ist normalerweise negativ, wenn ERSTER größer als LETZTER ist.
+FORMAT muss in der Lage sein, ein Argument vom Typ „double“ auszugeben;
+per Voreinstellung ist es %.PRÄZf, wenn ERSTER, PLUS und LETZTER alle dezimale
+Fixkommazahlen sind mit einer maximalen Genauigkeit PRÄZ, ansonsten %g.
+Die Angabe der Zahlen auf der Kommandozeilen muss im englischen Format erfolgen,
+die Ausgabe hängt dagegen von der gewählten Locale ab (in diesem Fall wird also
+ein Dezimalpunkt in der Eingabe und ein Dezimalkomma in der Ausgabe benutzt.)
+
+Onlinehilfe für GNU coreutils: <https://www.gnu.org/software/coreutils/>
+Melden Sie Übersetzungsfehler für %s an <translation-team-de@lists.sourceforge.net>
+Die vollständige Dokumentation ist hier: <https://www.gnu.org/software/coreutils/seq>
+oder auch lokal mittels „info '(coreutils) seq invocation'“

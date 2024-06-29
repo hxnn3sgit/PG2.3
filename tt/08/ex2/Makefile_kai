@@ -1,0 +1,11 @@
+SRC = main.cpp token.cpp calc.cpp
+OBJ = $(SRC:%.cpp=%.o)
+
+calc: $(OBJ)
+	g++ $(OBJ) -o $@
+
+%.o: %.cpp token.h calc.h Makefile
+	g++ -c $< -o $@
+
+info:
+	@echo $(OBJ)

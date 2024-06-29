@@ -1,0 +1,9 @@
+pg2,elo,link https://elo.oth-regensburg.de 
+pg2,link https://www.cppreference.com 
+pg2,lecture Wed 11:45, Fri 13:15 
+link,search https://duckduckgo.com Website that does not track my seardhes 
+lernen,09042024 webtechnologien, lineare optimierung, nichtlineare optimierung 
+test1,tag2,tag3,tdfj asjdfj dsfklaj alsdjf 
+neuertest,krass ahsdf kadsjf 
+radfahren,neuschwarzau Papa Mama fahren heute Rad, um 15:15 essen wir dann im Garten Kuchen 
+hallo das 
