@@ -5,25 +5,6 @@
 
 using std::cout, std::endl, std::string, std::ostream, std::vector;
 
-template<typename T>
-class dynamicArray{
-private:
-	T *value;
-	unsigned int size;
-public:
-	dynamicArray() : size(0), value(nullptr) {}
-  	dynamicArray(int size) : size(size), value(new T[size]) {}  	
-	~dynamicArray();
-	T& at(int i) const;
-	void push(const T &x);
-	T& operator=(const T &my_arr);
-	bool operator==(const dynamicArray<T> &arr) const;
-	T& operator[](int index);
-	
-	template<typename U>
-	friend ostream& operator<<(ostream &out, const dynamicArray<U> &arr);
-};
-
 struct my_pair {
 	int value;
 	string key;
@@ -33,80 +14,39 @@ struct my_pair {
 class associative_array {
 private:
 	//dynamicArray<my_pair> data;
-	dynamicArray<my_pair> data;
+	vector<my_pair> data;
 public:
-	associative_array(int matr_nr, string name) : data(my_pair(matr_nr, name)) {}
+	associative_array() {}
+	associative_array(int matr_nr, string name);
 	//associative_array()  
-	~associative_array();
+	~associative_array() { data.clear(); }
    	void push(int value, const string &key);
-	int& operator[](const string &my_str);
+	int operator[](const string &key) const;
+	associative_array& operator[] (const string &key);
 	friend ostream& operator<<(ostream &out, const associative_array &other);   
 };
 
-/*void associative_array::push(int value, const string &key) {
-	int *new_data = new int[size+1];
 
-	for (
-}*/
+associative_array::associative_array(int matr_nr, string name) {
+	data.push_back(my_pair(matr_nr, name));
+}
 
+int associative_array::operator[] (const string &key) const {
+	//den vector durchgehen und diese mtrnr returnen die mit dem key other übereinstimmt
+	for (auto item : data) {
+		if (item.key == key) {
+			return item.value;
+		}
+	}
+	return -1; //jetzt dann: throw exception
+}
+
+associative_array&::operator[] (const s
 
 int main() {
-	//associative_array matr_nr(3370207, "Hannes Seidl");
-	my_pair test(3370272, "Hannes Seidl");
+	associative_array mat_nr;
+	//mat_nr["Hannes Seidl"] = 3370207;
+	//cout << "matr_nr von stud ist " << mat_nr["Hannes Seidl"] << endl;
 
 	return 0;
-}
-
-template<typename T>
-dynamicArray<T>::~dynamicArray() {
-	delete [] value;
-	size = 0;
-}
-
-template<typename T>
-void dynamicArray<T>::push(const T &x) {
-		T *new_values = new T[size+1];
-		for (int i = 0; i < size; ++i)
-			new_values[i] = value[i];
-		new_values[size] = x;
-		size += 1;
-		delete [] value;
-		value = new_values;
-	
-}
-
-template<typename T> //geht noch nicht
-bool dynamicArray<T>::operator==(const dynamicArray<T> &arr) const {
-	if (arr.size == size) {
-		for (int i = 0; i < size; ++i) {
-			if (value[i] != arr[i])
-				return false;
-		}
-		return true;		
-	}
-	return false;	
-}
-
-template<typename T>
-T& dynamicArray<T>::operator=(const T &my_arr) {
-	for (int i = 0; i < size; ++i)
-		my_arr[i] = value[i];
-}
-
-template<typename T>
-T& dynamicArray<T>::at(int i) const {
-	return this->value[i];
-}
-
-template<typename T>
-T& dynamicArray<T>::operator[](int index) {
-	return value[index];
-}
-
-template<typename T>
-ostream& operator<<(ostream &out, const dynamicArray<T> &arr) {
-	for (unsigned int i = 0; i < arr.size; ++i) {
-		out << "[" << arr.at(i) << "]\t";
-	}
-	return out;
 }
