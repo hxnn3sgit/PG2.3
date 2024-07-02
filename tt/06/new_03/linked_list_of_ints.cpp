@@ -5,10 +5,30 @@
 using std::cout, std::endl, std::cerr;
 using namespace std;
 
-linked_list_of_ints::linked_list_of_ints(int argc, char **argv) {
+linked_list_of_ints::linked_list_of_ints(int argc, char **argv) : head(nullptr) {
 	for (int i = 1; i < argc; ++i) {
 		this->append(atoi(argv[i]));
 	}	
+}
+
+linked_list_of_ints::linked_list_of_ints(const linked_list_of_ints &other) : head(nullptr) {
+	if (other.head == nullptr) { //liste die kopiert werde soll, ist leer
+		head = nullptr;
+	} else {
+		head = new node(other.head->value);
+		node *current = head;
+		node *other_current = other.head->next;
+		while (other_current != nullptr) {
+			current->next = new node(other_current->value);
+			current = current->next;
+			other_current = other_current->next;
+		}
+	}
+}
+
+linked_list_of_ints::linked_list_of_ints(linked_list_of_ints &&other) noexcept : head(nullptr){
+	head = other.head;
+	other.head = nullptr;
 }
 
 linked_list_of_ints::~linked_list_of_ints() {
@@ -43,7 +63,7 @@ void linked_list_of_ints::print() {
 			current = current->next;
 		}
 		cout << "|\n";
-	}
+	} 
 }
 
 void linked_list_of_ints::append(int to_append) {
@@ -88,10 +108,14 @@ void linked_list_of_ints::insert_at(int value, int index) {
 }
 
 //ostream operator überladen:
-std::ostream& linked_list_of_ints::operator<<(ostream &out, const linked_list_of_ints &list) {
+std::ostream& operator<<(ostream &out, const linked_list_of_ints &my_list) {
+	//int len = my_list.len();
 	out << "|";
-	for (int i = 0; i < this->len(); ++i)
-		out << head->value << "--";
+	linked_list_of_ints::node *current = my_list.head;
+	while(current) {
+		out << current->value << "--";
+		current = current->next;
+	}
 	out << "|" << endl;
 	return out;
 }

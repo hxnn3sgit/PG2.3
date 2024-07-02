@@ -13,10 +13,13 @@ private:
 public:
 	linked_list_of_ints() : head(nullptr) {};
 	linked_list_of_ints(int argc, char **args);
+	linked_list_of_ints(const linked_list_of_ints &other);
+	linked_list_of_ints(linked_list_of_ints &&other) noexcept;
 	~linked_list_of_ints();
 	int len();
 	void print();
 	void append(int to_append);
 	void prepend(int to_append);
 	void insert_at(int value, int index);
+	friend std::ostream &operator<<(std::ostream &out, const linked_list_of_ints &my_list);
 };
