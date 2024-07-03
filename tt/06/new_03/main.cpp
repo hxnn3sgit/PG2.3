@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
 		my_first_list.append(i);
 
 	cout << "before move:\nfirst: \n" << my_first_list << endl << my_second_list << endl;
-	my_second_list = std::move(my_first_list);
+	my_second_list(std::move(my_first_list));
 	cout <<"after move:\nfirst: \n" << my_first_list << endl << my_second_list << endl;
 
 	return 0;
