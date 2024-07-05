@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <cstring>
+
 
 using namespace std;
 
@@ -14,10 +16,16 @@ public:
 		cout << __PRETTY_FUNCTION__ << "c'ctor" << endl;
 		name = anderes_ding.name;
 	}
-	Ding(const char *name) {
+	Ding(const char *name) : name(name) {
 		cout << __PRETTY_FUNCTION__ << "ctor" << endl;
 	}
-	explicit Ding(int i) {}
+	/*Ding(Ding &&other) {
+	name = other.name;
+	other = nullptr;
+	}*/
+
+	~Ding() {
+	explicit Ding(int i) {} //??? casting int to string?
 	~Ding() { cout << __PRETTY_FUNCTION__ << endl; }
 	friend ostream& operator<<(ostream &out, const Ding &d) {
 		return out << "'" << d.name << "'" << endl;

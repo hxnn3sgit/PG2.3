@@ -87,14 +87,14 @@ public:
 	}	
 };
 
-class zootier : public tier{ //rein abstrakt -> virtual methoden = 0 only
-public:
-	zootier(const string &name, int beine) : tier(name, beine) {}
-	virtual ~zootier() = default;
-	virtual void fuettern() = 0;
+class zootier { //rein abstrakt -> virtual methoden = 0 only
+private:
+	std::vector<*zootier> zootiere;
+public: 
+	virtual ~zootier() = default; //interface
+	virtual void fuettern() = 0; //rein virtuelle methode
 };
 
-template<typename T>
 class zoo {
 private:
 	//todo: find right datatype

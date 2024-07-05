@@ -7,5 +7,6 @@ public:
 	associative_array() : key(), data(nullptr) {}
 	associative_array(unsigned int size) : size(size), data(new T[size]) {}
 	~associative_array();
+	
 
 };

@@ -2,11 +2,11 @@
 #include <string>
 #include <cctype>
 
-using std::cout, std::endl;
+using std::cout, std::endl, std::string;
 
 class my_string : public std::string {
 private:
-	char *data;
+	//char *data;
 public:
 	my_string() : std::string("") {}
 	my_string(char zeichen, int anzahl);
@@ -39,6 +39,14 @@ std::ostream &operator<<(std::ostream &out, const my_string &other) {
 	return out;
 }
 
+my_string::my_string toUpper() {
+	return toupper(*this);
+}
+
+my_string::my_string toLower() {
+	return tolower(*this);
+}
+ 
 int main() {
 	my_string first_string('a', 5);
 	cout << first_string << endl;	
