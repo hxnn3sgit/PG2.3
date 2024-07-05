@@ -1,62 +1,50 @@
 #include <iostream>
-#include <string>
-#include <cstring>
-#include <vector>
-#include <exception>
+#include <fstream>
+#include "associative_array.h"
+#include <filesystem>
+
+namespace fs = std::filesystem;
 
 using namespace std;
 
-template<typename T, V>
-struct my_pair {
-	T value;
-	V key;
-	my_pair(cpnst T &value, const V &key) : value(value), key(key) {}
+struct number_data {
+	int alter, vl, ue, note;
+	number_data() : alter(0), vl(0), ue(0), note(0) {}
+	number_data(int alter, int vl, int ue, int note) : alter(alter), vl(vl), ue(ue), note(note) {}
+	friend ostream& operator<<(ostream &out, const number_data &other);
 };
 
-template<typename T, V>
-class associative_array {
-	public:
-	vector<my_pair> data;
-public:
-	associative_array() {}
-	associative_array(int matr_nr, string name);
-	~associative_array() { data.clear(); }
-   	void push(int value, const string &key);
-	int operator[](const string &key) const;
-	int& operator[] (const string &key);
-	friend ostream& operator<<(ostream &out, const associative_array &other);   
-};
-
-void associative_array::push(int value, const string &key) {
-	data.push_back(my_pair(value, key));
+ostream &operator<<(ostream &out, const number_data &other) {
+	return out << "Alter: " << other.alter << ", VL: " << other.vl << " UE: " << other.ue << ", Note: " << other.note;
 }
 
-associative_array::associative_array(int matr_nr, string name) {
-	data.push_back(my_pair(matr_nr, name));
+void fill_array(associative_array<string, number_data> &student_data) {
+	//store things from file students.txt
 }
 
-int associative_array::operator[] (const string &key) const {
-	//den vector durchgehen und diese mtrnr returnen die mit dem key other übereinstimmt
-	for (const auto &item : data) {
-		if (item.key == key) {
-			return item.value;
-		}
-	}
-	return -1; //jetzt dann: throw exception
-}
+int main(int argc, char **argv) {
+	ifstream file_out;
 
-int& associative_array::operator[] (const string &key) {
-	//todo:
-	//speicheradresse vom zugehörigen value vom key hinzufügen
-	for (auto &item : data) {
-		if (key == item.key) { return item.value; }
-	}
-	data.push_back(my_pair(0, key));
-	return data.back().value;
-}
+	number_data first_dataset(21, 13, 4, 2.7);
+	associative_array<number_data, string> student_data;	
+	student_data["Katlin Albrecht"] = first_dataset;
 
-int main() {
-	associative_array mat_nr;
+	cout << student_data << endl;
+	//fill_array(student_data);
 	
+	fs::path p = "./students.txt";
+	file_out.open(p);
+	
+	int counter = 0;
+	if (file_out.is_open()) {
+		string line;
+		//while (getline(file_out, line)) {
+			//cout << line << endl;
+
+		//}
+		getline(file_out, line);
+	} else
+		cerr << "File couldnt be openend\n";
+
 	return 0;
 }

@@ -100,9 +100,7 @@ public:
 public:
 	associative_array() {}
 	associative_array(int matr_nr, string name);
-	//associative_array()  
 	~associative_array() { data.clear(); }
-	//string get_key() { return data
    	void push(int value, const string &key);
 	int operator[](const string &key) const;
 	int& operator[] (const string &key);
