@@ -19,7 +19,7 @@ void associative_array<V, K>::push(const V &value, const K &key) {
 template<typename T, typename U>
 ostream& operator<<(ostream &out, const associative_array<T, U> &other) {
 	for (const auto &pair : other.data) 
-		out << pair.key << "[" << pair.value << "]" << endl;
+		out << pair.key << " [" << pair.value << "]" << endl;
 
 	//for (int i = 0; i < other.data.size(); ++i)
 	//	out << "mat nr von " << other.data[i].key << " ist [" << other[other.data[i].key] << "]\n"; 
