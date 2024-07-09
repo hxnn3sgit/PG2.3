@@ -38,5 +38,7 @@ int main() {
 
 	cout << "stringstream:\t" << ss.str() << endl;
 
+	alsdj
+
 	return 0;
 }

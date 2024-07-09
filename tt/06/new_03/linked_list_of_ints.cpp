@@ -27,6 +27,9 @@ linked_list_of_ints::linked_list_of_ints(const linked_list_of_ints &other) : hea
 }
 
 linked_list_of_ints::linked_list_of_ints(linked_list_of_ints &&other) noexcept : head(nullptr){
+	if (other.head == head) {
+		return;
+	}
 	head = other.head;
 	other.head = nullptr;
 }

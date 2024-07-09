@@ -2,6 +2,7 @@
 #include <fstream>
 #include "associative_array.h"
 #include <filesystem>
+#include <algorithm>
 
 namespace fs = std::filesystem;
 
@@ -9,13 +10,25 @@ using namespace std;
 
 struct number_data;
 
-void course_overview(const associative_array<string, number_data> &student_data, const string &student_name) {
-		for (int i = 0; i < student_data.data.size(); ++i) {
-			if (student_data.data[i].key == student_name) {
-				cout << student_name << student_data.data[i].value << endl;
-			}
-		}	
+/*template<typename T, typename V>
+struct filter_predicate {
+	bool operator() (const std::pair<T, V> &pair) const {
+		
+	}
+};*/
+
+bool is_right_name() {
+	return true;
 }
+
+/*void course_overview(const associative_array<string, number_data> &student_data, const string &student_name) {
+	
+	//if (auto it = std::find_if(student_data.data.begin(), student_data.data.end(), is_right_name) {
+	auto it = std::find_if(student_data.data.begin(), student_data.data.end(), is_right_name);	
+	cout << it << endl;
+	//} else
+		//cout << "Person not found" << endl;
+}*/
 
 struct number_data {
 	int alter, vl, ue;
@@ -29,10 +42,6 @@ ostream &operator<<(ostream &out, const number_data &other) {
 	return out << "Alter: " << other.alter << ", VL: " << other.vl << " UE: " << other.ue << ", Note: " << other.note;
 }
 
-void fill_array(associative_array<string, number_data> &student_data) {
-	//store things from file students.txt
-}
-
 int main(int argc, char **argv) {
 	ifstream file_out;
 
@@ -40,7 +49,7 @@ int main(int argc, char **argv) {
 	fs::path p = "./students.txt";
 	file_out.open(p);
 	
-	if (file_out.is_open()) {
+	try {
 		string line;
 		string student_name;
 		float counter = 1;
@@ -67,12 +76,12 @@ int main(int argc, char **argv) {
 				counter = 1;
 			}
 		}
-	} else
+	} std::throw {
 		cerr << "File couldnt be openend\n";
-
+	}
+	
 	cout << student_data << endl;
 
-	
 
 	return 0;
 }
