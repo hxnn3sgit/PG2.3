@@ -22,11 +22,11 @@ private:
 public:
 	dynamicArray() : size(0), value(nullptr) {}
   	dynamicArray(int size) : size(size), value(new T[size]) {}
-   	dynamicArray(initializer_list<T> init_list) {
+   	dynamicArray(const initializer_list<T> &init_list) {
 		size = init_list.size();
 		value = new T[size];
 		int index = 0;
-		for (T init_value : init_list)
+		for (auto &init_value : init_list)
 			value[index++] = init_value;
 	}	
 	~dynamicArray();

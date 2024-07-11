@@ -33,7 +33,7 @@ int main() {
 	for (int i = 0; i < 20; ++i)
 		random_ints.push_back(rand()%N);
 
-	auto sorting = [](int zahl1, int zahl2) {
+	std::funtion<int,(int,int)>  sorting = [](int zahl1, int zahl2) {
 		return zahl1 < zahl2;
 	};
 	
