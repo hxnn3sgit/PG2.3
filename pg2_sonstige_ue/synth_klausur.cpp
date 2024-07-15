@@ -16,7 +16,7 @@ struct price_missmatch : public std::exception {
     const char* what() const noexcept override { return "prices doesn´t match"; }
 };
 
-struct missing_price : public std:: exception {
+struct missing_price : public std::exception {
     const char* what() const noexcept override { return "no price specified!" ;}
 };
 

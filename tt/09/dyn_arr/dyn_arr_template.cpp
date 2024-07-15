@@ -33,6 +33,7 @@ public:
 	T& at(int i) const;
 	void push(const T &x);
 	T& operator=(const T &my_arr);
+	dynamicArray& operator=(dynamicArray<T> &&arr);
 	bool operator==(const dynamicArray<T> &arr) const;
 	T& operator[](int index);
 	
@@ -55,7 +56,6 @@ void dynamicArray<T>::push(const T &x) {
 		size += 1;
 		delete [] value;
 		value = new_values;
-	
 }
 
 template<typename T>
@@ -71,7 +71,18 @@ bool dynamicArray<T>::operator==(const dynamicArray<T> &arr) const {
 }
 
 template<typename T>
+dynamicArray<T>& dynamicArray<T>::operator=(dynamicArray<T> &&arr) {
+	cout << __PRETTY_FUNCTION__ << endl;
+	if (this != &arr) {
+		value = arr.value;
+		arr.value = nullptr;
+	} else
+		return *this;
+}
+
+template<typename T>
 T& dynamicArray<T>::operator=(const T &my_arr) {
+	cout << __PRETTY_FUNCTION__ << endl;
 	for (int i = 0; i < size; ++i)
 		my_arr[i] = value[i];
 }
