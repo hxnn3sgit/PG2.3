@@ -1,0 +1,10 @@
+a b
+q0
+q1 q2
+q0 q1 q2 trap
+q0 q1
+q1 q0
+q1 trap
+q1 q2
+q2 q1
+q2 trap
